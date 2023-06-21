@@ -7,3 +7,9 @@ form {
     background-color: red;
     color: white;
 }
+
+.button {
+    width: fit-content;
+    margin-top: 1rem;
+    font-size: 1.03rem;
+}

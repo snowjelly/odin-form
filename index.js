@@ -21,7 +21,9 @@ form.addEventListener('submit', (e) => {
     checkEmailValidity();
 });
 
-
+email.addEventListener('focusout', () => {
+    checkEmailValidity() ;
+});
 
 function checkEmailValidity() {
         const isValid = email.value.length === 0 || emailRegExp.test(email.value);

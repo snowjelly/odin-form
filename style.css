@@ -13,3 +13,7 @@ form {
     margin-top: 1rem;
     font-size: 1.03rem;
 }
+
+#email:invalid {
+    background-color: red;
+}

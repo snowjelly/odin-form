@@ -10,7 +10,7 @@ const form = document.querySelector('form');
 const MAX_COUNTRY_LENGTH = 56;
 const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const zipRegExp = /^\d{5}([ \-]\d{4})?/;
-const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+=[\]{}|\\,.?<>'"/;`: -])[A-Za-z\d~!@#$%^&*()_+=[\]{}|\\,.?<>'"/;`: -]{8,}$/;
 const passwordErrorText = 'password. Your password must include 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character';
 
 window.addEventListener('load', () => {

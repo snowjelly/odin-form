@@ -6,6 +6,8 @@ const zip = document.querySelector('#zip');
 const zipError = document.querySelector('#zip + .error');
 const password = document.querySelector('#password');
 const passwordError = document.querySelector('#password + .error');
+const confirmPassword = document.querySelector('#confirm-password');
+const confirmPasswordError = document.querySelector('#confirm-password + .error');
 const form = document.querySelector('form');
 const MAX_COUNTRY_LENGTH = 56;
 const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -25,6 +27,10 @@ form.addEventListener('submit', (e) => {
     displayError(country, countryError, checkCountryValidity(), 'country');
     displayError(zip, zipError, checkZipValidity(), 'zip code');
     displayError(password, passwordError, checkPasswordValidity(), passwordErrorText);
+    displayError(confirmPassword, confirmPasswordError, checkConfirmPasswordValidity(), '');
+    if (!checkConfirmPasswordValidity()) {
+       confirmPasswordError.textContent = 'Your passwords do not match.'; 
+    }
 });
 
 function checkEmailValidityOnLoad() {
@@ -46,6 +52,13 @@ zip.addEventListener('focusout', () => {
 
 password.addEventListener('focusout', () => {
     displayError(password, passwordError, checkPasswordValidity(), passwordErrorText);
+});
+
+confirmPassword.addEventListener('focusout', () => {
+    displayError(confirmPassword, confirmPasswordError, checkConfirmPasswordValidity(), '');
+    if (!checkConfirmPasswordValidity()) {
+       confirmPasswordError.textContent = 'Your passwords do not match.'; 
+    }
 });
 
 function checkEmailValidity() {
@@ -78,6 +91,11 @@ function checkPasswordValidity() {
     return isValid;
 }
 
+function checkConfirmPasswordValidity() {
+    const isValid = confirmPassword.value.length !== 0 && password.value === confirmPassword.value;
+    return isValid;
+}
+
 function displayError(inputField, inputFieldError, isValid, inputFieldErrorText) {
     if (!isValid) {
         inputField.className = 'invalid';
@@ -89,5 +107,5 @@ function displayError(inputField, inputFieldError, isValid, inputFieldErrorText)
         inputFieldError.textContent = '';
         inputFieldError.className = 'error';
     }
-    return inputField.className;
+    return inputFieldError;
 }

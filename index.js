@@ -31,6 +31,9 @@ form.addEventListener('submit', (e) => {
     if (!checkConfirmPasswordValidity()) {
        confirmPasswordError.textContent = 'Your passwords do not match.'; 
     }
+    if (getFormValidity()) {
+        alert('Form submitted!');
+    }
 });
 
 function checkEmailValidityOnLoad() {
@@ -94,6 +97,11 @@ function checkPasswordValidity() {
 function checkConfirmPasswordValidity() {
     const isValid = confirmPassword.value.length !== 0 && password.value === confirmPassword.value;
     return isValid;
+}
+
+function getFormValidity() {
+    const formItems = document.querySelectorAll('input.invalid');
+    if (formItems.length === 0) return true;
 }
 
 function displayError(inputField, inputFieldError, isValid, inputFieldErrorText) {

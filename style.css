@@ -14,6 +14,6 @@ form {
     font-size: 1.03rem;
 }
 
-input.invalid {
+input:invalid {
     background-color: rgb(255, 160, 160);
 }

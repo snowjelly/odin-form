@@ -28,12 +28,18 @@ form.addEventListener('submit', (e) => {
     displayError(zip, zipError, checkZipValidity(), 'zip code');
     displayError(password, passwordError, checkPasswordValidity(), passwordErrorText);
     displayError(confirmPassword, confirmPasswordError, checkConfirmPasswordValidity(), '');
+
     if (!checkConfirmPasswordValidity()) {
-       confirmPasswordError.textContent = 'Your passwords do not match.'; 
+        confirmPasswordError.textContent = 'Your passwords do not match.';
+        confirmPassword.setCustomValidity(confirmPasswordError.textContent);
+    } else {
+        confirmPassword.setCustomValidity('');
     }
+
     if (getFormValidity()) {
         alert('Form submitted!');
     }
+
 });
 
 function checkEmailValidityOnLoad() {
@@ -60,7 +66,10 @@ password.addEventListener('focusout', () => {
 confirmPassword.addEventListener('focusout', () => {
     displayError(confirmPassword, confirmPasswordError, checkConfirmPasswordValidity(), '');
     if (!checkConfirmPasswordValidity()) {
-       confirmPasswordError.textContent = 'Your passwords do not match.'; 
+        confirmPasswordError.textContent = 'Your passwords do not match.'; 
+        confirmPassword.setCustomValidity(confirmPasswordError.textContent);
+    } else {
+        confirmPassword.setCustomValidity('');
     }
 });
 
@@ -109,11 +118,13 @@ function displayError(inputField, inputFieldError, isValid, inputFieldErrorText)
         inputField.className = 'invalid';
         inputFieldError.textContent = `Please enter a valid ${inputFieldErrorText}.`;
         inputFieldError.className = 'error active';
+        inputField.setCustomValidity(inputFieldError.textContent);
     }
     else {
         inputField.className = 'valid';
         inputFieldError.textContent = '';
         inputFieldError.className = 'error';
+        inputField.setCustomValidity('');
     }
     return inputFieldError;
 }
